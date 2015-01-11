@@ -18,8 +18,6 @@ public class RestAPISetting: NSObject {
     public var headers:[String: String] = [
         "X-Requested-With": "XMLHttpRequest",
         "Accept": "application/json, text/plain, */*",
-        "Copyright": "Ohyeap.Com",
-        "User-Agent": "OhYeap App",
     ]
 
     // initialize with end point
