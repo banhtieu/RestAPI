@@ -21,6 +21,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		365A5CF41A62DEE500BEC477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 365A5CEF1A62DEE400BEC477 /* Example.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 365A5CCA1A62DEE400BEC477;
+			remoteInfo = Example;
+		};
+		365A5CF61A62DEE500BEC477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 365A5CEF1A62DEE400BEC477 /* Example.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 365A5CDF1A62DEE400BEC477;
+			remoteInfo = ExampleTests;
+		};
 		36B68CCA1A62B81100A04D84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B68CB41A62B81100A04D84 /* Project object */;
@@ -31,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		365A5CEF1A62DEE400BEC477 /* Example.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Example.xcodeproj; path = Examples/Example/Example.xcodeproj; sourceTree = "<group>"; };
 		36B68CBD1A62B81100A04D84 /* RestAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RestAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36B68CC11A62B81100A04D84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36B68CC21A62B81100A04D84 /* RestAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestAPI.h; sourceTree = "<group>"; };
@@ -66,9 +81,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		365A5CC01A62DECD00BEC477 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				365A5CEF1A62DEE400BEC477 /* Example.xcodeproj */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
+		365A5CF01A62DEE400BEC477 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				365A5CF51A62DEE500BEC477 /* Example.app */,
+				365A5CF71A62DEE500BEC477 /* ExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		36B68CB31A62B81100A04D84 = {
 			isa = PBXGroup;
 			children = (
+				365A5CC01A62DECD00BEC477 /* Examples */,
 				36B68CBF1A62B81100A04D84 /* RestAPI */,
 				36B68CCC1A62B81100A04D84 /* RestAPITests */,
 				36B68CBE1A62B81100A04D84 /* Products */,
@@ -228,6 +261,12 @@
 			mainGroup = 36B68CB31A62B81100A04D84;
 			productRefGroup = 36B68CBE1A62B81100A04D84 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 365A5CF01A62DEE400BEC477 /* Products */;
+					ProjectRef = 365A5CEF1A62DEE400BEC477 /* Example.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				36B68CBC1A62B81100A04D84 /* RestAPI */,
@@ -235,6 +274,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		365A5CF51A62DEE500BEC477 /* Example.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Example.app;
+			remoteRef = 365A5CF41A62DEE500BEC477 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		365A5CF71A62DEE500BEC477 /* ExampleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ExampleTests.xctest;
+			remoteRef = 365A5CF61A62DEE500BEC477 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		36B68CBB1A62B81100A04D84 /* Resources */ = {
@@ -455,6 +511,7 @@
 				36B68CD51A62B81100A04D84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36B68CD61A62B81100A04D84 /* Build configuration list for PBXNativeTarget "RestAPITests" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +520,7 @@
 				36B68CD81A62B81100A04D84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

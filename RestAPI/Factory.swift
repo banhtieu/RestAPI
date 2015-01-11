@@ -8,6 +8,14 @@
 
 import UIKit
 
+public protocol Initializable {
+    init()
+}
+
+extension NSObject: Initializable {
+    
+}
+
 //
 // The Factory that stores all objects 
 // Usage:
@@ -24,7 +32,7 @@ public class Factory: NSObject {
     //
     //  Get Object from Factory
     //
-    public class func get<T: NSObject>() -> T! {
+    public class func get<T: Initializable>() -> T! {
         
         // the result
         var result:T! = nil

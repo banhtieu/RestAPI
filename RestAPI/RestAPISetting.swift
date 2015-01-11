@@ -9,17 +9,23 @@
 import UIKit
 
 // setting
-class RestAPISetting: NSObject {
+public class RestAPISetting: NSObject {
     
     // end point of the request
-    let endPoint = "https://ohyeap.com"
+    public var endPoint = "https://ohyeap.com"
     
     // headers of the request
-    let headers:[String: String] = [
+    public var headers:[String: String] = [
         "X-Requested-With": "XMLHttpRequest",
         "Accept": "application/json, text/plain, */*",
         "Copyright": "Ohyeap.Com",
-        "Content-Type":	"application/json;charset=UTF-8",
         "User-Agent": "OhYeap App",
     ]
+
+    // initialize with end point
+    public init(endPoint: String) {
+        super.init()
+        
+        Factory.register(self)
+    }
 }

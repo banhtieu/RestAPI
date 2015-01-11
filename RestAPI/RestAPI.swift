@@ -20,6 +20,9 @@ public class RestAPI: NSObject {
     // headers for this request
     private var headers = [String: String]()
     
+    // serialize request using json
+    public var serializeRequestByJSON = true
+    
     // initializing the Rest API
     public required override init() {
         var settings: RestAPISetting = Factory.get()
@@ -49,7 +52,7 @@ public class RestAPI: NSObject {
     
     // post with params
     public func post<T: Serializable>(path: String, params: AnyObject?, handler: ((T) -> Void)?) {
-        request("POST", path: path, pathParams: nil, postBody: params, handler: handler)
+        request("POST", path: path, pathParams: params as? [String: AnyObject], postBody: params, handler: handler)
     }
     
     // call a request
@@ -58,15 +61,22 @@ public class RestAPI: NSObject {
         pathParams: [String: AnyObject]?,
         postBody: AnyObject?,
         handler: ((T) -> Void)?) {
-            var fullPath = "\(endPoint)\(path)?"
+            var fullPath = "\(endPoint)\(path)"
+            
+            var requestParams = ""
             
             // the request
             if let paramsDictionary = pathParams {
                 // params
                 for (key, value) in paramsDictionary {
                     var valueString = "\(value)"
-                    fullPath += "\(key)=" + valueString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+                    requestParams += "\(key)=" + valueString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
                 }
+            }
+            
+            // if request params =
+            if method == "GET" {
+                fullPath += "?" + requestParams
             }
             
             var request = NSMutableURLRequest(URL: NSURL(string: fullPath)!)
@@ -78,17 +88,20 @@ public class RestAPI: NSObject {
                 request.setValue(value, forHTTPHeaderField: key)
             }
             
-            if let body: AnyObject = postBody {
-                if let bodyAsJson = NSJSONSerialization.dataWithJSONObject(body,
-                    options: NSJSONWritingOptions.allZeros, error: nil) {
-                        
-                        request.HTTPBody = bodyAsJson
-                        
-                        var string = NSString(data: bodyAsJson, encoding: NSUTF8StringEncoding)!
-                        println("Request: \(fullPath)")
-                        println("Body: \(string)")
-                        println("Size: \(bodyAsJson.length)")
+            if serializeRequestByJSON {
+                if let body: AnyObject = postBody {
+                    if let bodyAsJson = NSJSONSerialization.dataWithJSONObject(body,
+                        options: NSJSONWritingOptions.allZeros, error: nil) {
+                            
+                            request.HTTPBody = bodyAsJson
+                            
+                            var string = NSString(data: bodyAsJson, encoding: NSUTF8StringEncoding)!
+                            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+                    }
                 }
+            } else {
+                request.setValue("application/x-www-form-urlencoded; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+                request.HTTPBody = requestParams.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
             }
             
             // create a data task

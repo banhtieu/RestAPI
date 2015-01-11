@@ -8,11 +8,10 @@
 
 import UIKit
 
-// call back delay
 public class ResponseData<T: Serializable>: Serializable {
     
     // data is template
-    var data:T! = nil
+    var data:T?
     
     // initialize with provided data
     public required init?(data: AnyObject?) {
@@ -30,7 +29,8 @@ public class ResponseData<T: Serializable>: Serializable {
         var success = false
         
         // if data is an dictionary
-        self.data = SerializableModel.parseObject(data)
+        self.data = SerializableModel.parseObject(data) 
+        
         if let dataDict = data as? [String: AnyObject] {
             self.data = T(data: dataDict["data"])
             success = (self.data != nil)

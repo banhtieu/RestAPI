@@ -14,6 +14,11 @@ import UIKit
 //
 public class SerializableModel: NSObject, Serializable {
     
+    // intialize 
+    public override init() {
+        
+    }
+    
     // override the initialization
     public required init? (data: AnyObject?) {
         super.init()
@@ -95,7 +100,7 @@ public class SerializableModel: NSObject, Serializable {
     }
     
     // parse Object as Serializable
-    public func parseObject<T: Serializable>(data: AnyObject?) -> T? {
+    public class func parseObject<T: Serializable>(data: AnyObject?) -> T? {
         var result = T(data: data)
         return result
     }
