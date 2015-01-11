@@ -407,6 +407,7 @@
 				365A5CEB1A62DEE400BEC477 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		365A5CEC1A62DEE400BEC477 /* Build configuration list for PBXNativeTarget "ExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +416,7 @@
 				365A5CEE1A62DEE400BEC477 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

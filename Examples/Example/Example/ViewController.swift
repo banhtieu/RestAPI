@@ -19,12 +19,6 @@ class StationData: SerializableModel {
     var CurrentTrack = ""
 }
 
-// model for the current track
-class CurrentTrackResponse: SerializableModel {
-    var CallBackDelay = 0
-    var Station = StationData()
-}
-
 class ViewController: UIViewController {
 
     // get the rest api
@@ -41,9 +35,14 @@ class ViewController: UIViewController {
         
         var params = ["stationID": 99183933]
         
-        restAPI.post("/Player/GetCurrentTrack", params: params) {
-            (response: CurrentTrackResponse) in
-            println("Result: \(response.Station.CurrentTrack)")
+        restAPI.post("/Home/GetRandomStation") {
+            (response: StationData) in
+            println("Result: \(response.CurrentTrack)")
+        }
+        
+        restAPI.post("/Home/Top") {
+            (response: [StationData])
+            
         }
     }
 

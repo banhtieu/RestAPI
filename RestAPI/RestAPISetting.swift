@@ -12,7 +12,7 @@ import UIKit
 public class RestAPISetting: NSObject {
     
     // end point of the request
-    public var endPoint = "https://ohyeap.com"
+    public var endPoint:String
     
     // headers of the request
     public var headers:[String: String] = [
@@ -22,8 +22,9 @@ public class RestAPISetting: NSObject {
 
     // initialize with end point
     public init(endPoint: String) {
-        super.init()
         self.endPoint = endPoint
+        
+        super.init()
         
         Factory.register(self)
     }
