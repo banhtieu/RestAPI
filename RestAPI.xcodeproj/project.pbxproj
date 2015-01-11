@@ -17,6 +17,7 @@
 		36B68CE41A62BE6F00A04D84 /* SerializableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B68CE31A62BE6F00A04D84 /* SerializableModel.swift */; };
 		36B68CE91A62C37400A04D84 /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B68CE81A62C37400A04D84 /* ResponseData.swift */; };
 		36B68CEB1A62C52800A04D84 /* ResponseDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B68CEA1A62C52800A04D84 /* ResponseDataList.swift */; };
+		36B68CED1A62D94200A04D84 /* Array+Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B68CEC1A62D94200A04D84 /* Array+Serializable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		36B68CE31A62BE6F00A04D84 /* SerializableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SerializableModel.swift; path = RestAPI/SerializableModel.swift; sourceTree = "<group>"; };
 		36B68CE81A62C37400A04D84 /* ResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseData.swift; path = RestAPI/ResponseData.swift; sourceTree = "<group>"; };
 		36B68CEA1A62C52800A04D84 /* ResponseDataList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseDataList.swift; path = RestAPI/ResponseDataList.swift; sourceTree = "<group>"; };
+		36B68CEC1A62D94200A04D84 /* Array+Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Serializable.swift"; path = "RestAPI/Array+Serializable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				36B68CDD1A62BAF700A04D84 /* Serializable.swift */,
+				36B68CEC1A62D94200A04D84 /* Array+Serializable.swift */,
 				36B68CE31A62BE6F00A04D84 /* SerializableModel.swift */,
 				36B68CE81A62C37400A04D84 /* ResponseData.swift */,
 				36B68CEA1A62C52800A04D84 /* ResponseDataList.swift */,
@@ -259,6 +262,7 @@
 				36B68CEB1A62C52800A04D84 /* ResponseDataList.swift in Sources */,
 				36B68CE21A62BCC600A04D84 /* RestAPISetting.swift in Sources */,
 				36B68CDA1A62BA5500A04D84 /* RestAPI.swift in Sources */,
+				36B68CED1A62D94200A04D84 /* Array+Serializable.swift in Sources */,
 				36B68CE01A62BBAB00A04D84 /* Factory.swift in Sources */,
 				36B68CE91A62C37400A04D84 /* ResponseData.swift in Sources */,
 				36B68CE41A62BE6F00A04D84 /* SerializableModel.swift in Sources */,

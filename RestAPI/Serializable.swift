@@ -14,6 +14,6 @@ public protocol Serializable {
     init?(data: AnyObject?)
     
     // parse data to this object
-    func parse(data: AnyObject?) -> Bool
+    mutating func parse(data: AnyObject?) -> Bool
 
 }

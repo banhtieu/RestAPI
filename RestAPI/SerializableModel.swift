@@ -59,6 +59,13 @@ public class SerializableModel: NSObject, Serializable {
                         } else {
                             println("Cannot downcast to Model")
                         }
+                    } else if disposition == MirrorDisposition.IndexContainer {
+                        if var model = fieldInfo.value as? Array<AnyObject> {
+                            model.parse(fieldValue)
+                            self.setValue(model, forKey: fieldName)
+                        } else {
+                            println("Cannot set array")
+                        }
                     }
                 }
             }
