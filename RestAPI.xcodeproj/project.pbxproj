@@ -10,6 +10,11 @@
 		36B68CC31A62B81100A04D84 /* RestAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 36B68CC21A62B81100A04D84 /* RestAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36B68CC91A62B81100A04D84 /* RestAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B68CBD1A62B81100A04D84 /* RestAPI.framework */; };
 		36B68CD01A62B81100A04D84 /* RestAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B68CCF1A62B81100A04D84 /* RestAPITests.swift */; };
+		36B68CDA1A62BA5500A04D84 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B68CD91A62BA5500A04D84 /* RestAPI.swift */; };
+		36B68CDE1A62BAF700A04D84 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B68CDD1A62BAF700A04D84 /* Serializable.swift */; };
+		36B68CE01A62BBAB00A04D84 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B68CDF1A62BBAB00A04D84 /* Factory.swift */; };
+		36B68CE21A62BCC600A04D84 /* RestAPISetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B68CE11A62BCC600A04D84 /* RestAPISetting.swift */; };
+		36B68CE41A62BE6F00A04D84 /* SerializableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B68CE31A62BE6F00A04D84 /* SerializableModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +34,11 @@
 		36B68CC81A62B81100A04D84 /* RestAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36B68CCE1A62B81100A04D84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36B68CCF1A62B81100A04D84 /* RestAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPITests.swift; sourceTree = "<group>"; };
+		36B68CD91A62BA5500A04D84 /* RestAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
+		36B68CDD1A62BAF700A04D84 /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Serializable.swift; path = RestAPI/Serializable.swift; sourceTree = "<group>"; };
+		36B68CDF1A62BBAB00A04D84 /* Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		36B68CE11A62BCC600A04D84 /* RestAPISetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAPISetting.swift; sourceTree = "<group>"; };
+		36B68CE31A62BE6F00A04D84 /* SerializableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SerializableModel.swift; path = RestAPI/SerializableModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +81,12 @@
 		36B68CBF1A62B81100A04D84 /* RestAPI */ = {
 			isa = PBXGroup;
 			children = (
-				36B68CC21A62B81100A04D84 /* RestAPI.h */,
+				36B68CE71A62C29D00A04D84 /* Settings */,
+				36B68CE61A62C27800A04D84 /* Factory */,
+				36B68CE51A62C0A200A04D84 /* Model */,
 				36B68CC01A62B81100A04D84 /* Supporting Files */,
+				36B68CD91A62BA5500A04D84 /* RestAPI.swift */,
+				36B68CC21A62B81100A04D84 /* RestAPI.h */,
 			);
 			path = RestAPI;
 			sourceTree = "<group>";
@@ -100,6 +114,32 @@
 				36B68CCE1A62B81100A04D84 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		36B68CE51A62C0A200A04D84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				36B68CDD1A62BAF700A04D84 /* Serializable.swift */,
+				36B68CE31A62BE6F00A04D84 /* SerializableModel.swift */,
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		36B68CE61A62C27800A04D84 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				36B68CDF1A62BBAB00A04D84 /* Factory.swift */,
+			);
+			name = Factory;
+			sourceTree = "<group>";
+		};
+		36B68CE71A62C29D00A04D84 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				36B68CE11A62BCC600A04D84 /* RestAPISetting.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +249,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36B68CDE1A62BAF700A04D84 /* Serializable.swift in Sources */,
+				36B68CE21A62BCC600A04D84 /* RestAPISetting.swift in Sources */,
+				36B68CDA1A62BA5500A04D84 /* RestAPI.swift in Sources */,
+				36B68CE01A62BBAB00A04D84 /* Factory.swift in Sources */,
+				36B68CE41A62BE6F00A04D84 /* SerializableModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +364,7 @@
 		36B68CD41A62B81100A04D84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -328,12 +374,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		36B68CD51A62B81100A04D84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
