@@ -56,23 +56,23 @@ public class RestAPI: NSObject {
     }
     
     // get the object at path
-    public func get<T: Serializable>(path: String, handler: (([T]) -> Void)?) {
-        request("GET", path: path, pathParams: nil, postBody: nil, handler: handler)
+    public func getAsList<T: Serializable>(path: String, handler: (([T]) -> Void)?) {
+        requestAsList("GET", path: path, pathParams: nil, postBody: nil, handler: handler)
     }
     
     // request with a little params
-    public func get<T: Serializable>(path: String, params: [String: AnyObject]?, handler: (([T]) -> Void)?) {
-        request("GET", path: path, pathParams: params, postBody: nil, handler: handler)
+    public func getAsList<T: Serializable>(path: String, params: [String: AnyObject]?, handler: (([T]) -> Void)?) {
+        requestAsList("GET", path: path, pathParams: params, postBody: nil, handler: handler)
     }
     
     // post with no params
-    public func post<T: Serializable>(path: String, handler: (([T]) -> Void)?) {
-        request("POST", path: path, pathParams: nil, postBody: nil, handler: handler)
+    public func postAsList<T: Serializable>(path: String, handler: (([T]) -> Void)?) {
+        requestAsList("POST", path: path, pathParams: nil, postBody: nil, handler: handler)
     }
     
     // post with params
-    public func post<T: Serializable>(path: String, params: AnyObject?, handler: (([T]) -> Void)?) {
-        request("POST", path: path, pathParams: params as? [String: AnyObject], postBody: params, handler: handler)
+    public func postAsList<T: Serializable>(path: String, params: AnyObject?, handler: (([T]) -> Void)?) {
+        requestAsList("POST", path: path, pathParams: params as? [String: AnyObject], postBody: params, handler: handler)
     }
     
     
@@ -101,7 +101,7 @@ public class RestAPI: NSObject {
     }
 
     // call a request
-    func request<T: Serializable>(method: String,
+    func requestAsList<T: Serializable>(method: String,
         path: String,
         pathParams: [String: AnyObject]?,
         postBody: AnyObject?,

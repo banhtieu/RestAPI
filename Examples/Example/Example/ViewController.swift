@@ -40,9 +40,9 @@ class ViewController: UIViewController {
             println("Result: \(response.CurrentTrack)")
         }
         
-        restAPI.post("/Home/Top") {
-            (response: [StationData])
-            
+        restAPI.postAsList("/Home/Top") {
+            (response: [StationData]) in
+            println("There are \(response.count) stations")
         }
     }
 
