@@ -25,6 +25,7 @@ public class RestAPISetting: NSObject {
     // initialize with end point
     public init(endPoint: String) {
         super.init()
+        self.endPoint = endPoint
         
         Factory.register(self)
     }

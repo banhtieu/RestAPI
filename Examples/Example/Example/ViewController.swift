@@ -38,7 +38,6 @@ class ViewController: UIViewController {
         
         // get the factory
         restAPI = Factory.get()
-        restAPI.endPoint = "http://shoutcast.com"
         
         var params = ["stationID": 99183933]
         
