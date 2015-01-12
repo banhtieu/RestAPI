@@ -1,7 +1,7 @@
 # RestAPI
 A Super Library for working with Rest API.
 
-Getting Started:
+## Getting Started:
 
 1. Clone this Library from github.
 
@@ -43,3 +43,34 @@ Getting Started:
     // working with Station
   }
   ```
+
+## More:
+
+### Get Result As List
+
+  ```
+  // Get Top 500 stations
+  restAPI.postAsList("/Home/Top") {
+    (stations: [StationData]) in
+    // working with Station
+  }
+  ```
+  
+### Nested class:
+
+  ```
+  class StationResponseData: SerializableModel {
+    var CallBackDelay = 0
+    var Station = StationData()
+  }
+  
+  ///
+  var params = ["StationId": 12345]
+  restAPI.post("/Player/GetCurrentTrack", params: params)
+  {
+    (response: StationResponseData) in
+  }
+  ```
+  
+Uploading/ Downloading comming soon.
+Any idea please send to tuoitrevohoc@me.com
