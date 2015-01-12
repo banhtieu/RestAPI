@@ -11,7 +11,7 @@ A Super Library for working with Rest API.
 
 4. Create the response Model class
 
-  `
+  ```
   // Station Data Model
   class StationData: SerializableModel {
       var ID = 0
@@ -21,41 +21,41 @@ A Super Library for working with Rest API.
       var Genre = ""
       var CurrentTrack = ""
   }
-  `
+  ```
 
 5. Create the RestAPI Settings
 
-  `
+  ```
   // create the restAPI setting
   var restAPISettings = RestAPISetting(endPoint: "http://shoutcast.com")
-  `
+  ```
 
 6. Get the RestAPI Client
 
-  `
+  ```
   var restAPI: RestAPI = Factory.get()
-  `
+  ```
 
 7. Start Querying
 
-  `
+  ```
   restAPI.post("/Home/GetRandomStation") {
     (station: StationData) in
     // working with Station
   }
-  `
+  ```
 
 ## More:
 
 ### Get Result As List
 
-  `
+  ```
   // Get Top 500 stations
   restAPI.postAsList("/Home/Top") {
     (stations: [StationData]) in
     // working with Station
   }
-  `
+  ```
   
 ### Nested class:
 
