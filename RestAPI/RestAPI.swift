@@ -35,48 +35,85 @@ public class RestAPI: NSObject {
         super.init()
     }
     
-    // get the object at path
+    /// Send a GET request to the specified path
+    ///
+    /// :param: path - The relative path from the root URL
+    /// :param: handler - the handle function that receive an object as parameter
     public func get<T: Serializable>(path: String, handler: ((T) -> Void)?) {
         request("GET", path: path, pathParams: nil, postBody: nil, handler: handler)
     }
     
-    // request with a little params
+    /// Send a GET request to the specified path
+    ///
+    /// :param: path - The relative path from the root URL
+    /// :param: params - the parameters that passed to the request - will be serialized as parameters in url
+    /// :param: handler - the handle function that receive an object as parameter
+    ///
     public func get<T: Serializable>(path: String, params: [String: AnyObject]?, handler: ((T) -> Void)?) {
         request("GET", path: path, pathParams: params, postBody: nil, handler: handler)
     }
     
-    // post with no params
+    ///
+    /// Send a POST request to the target path
+    ///
+    /// :param: path - The relative path from the root URL
+    /// :param: handler - the handle function that receive an object as parameter
+    ///
     public func post<T: Serializable>(path: String, handler: ((T) -> Void)?) {
         request("POST", path: path, pathParams: nil, postBody: nil, handler: handler)
     }
     
-    // post with params
+    /// Send a POST request to the target path
+    ///
+    /// :param: path - The relative path from the root URL
+    /// :param: params - the parameters that passed to the request - will be serialized as POST parameters
+    /// :param: handler - the handle function that receive an object as parameter
     public func post<T: Serializable>(path: String, params: AnyObject?, handler: ((T) -> Void)?) {
         request("POST", path: path, pathParams: params as? [String: AnyObject], postBody: params, handler: handler)
     }
     
-    // get the object at path
+    /// Send a GET request to the specified path and get back a list
+    ///
+    /// :param: path - The relative path from the root URL
+    /// :param: handler - the handle function that receive an object as parameter
     public func getAsList<T: Serializable>(path: String, handler: (([T]) -> Void)?) {
         requestAsList("GET", path: path, pathParams: nil, postBody: nil, handler: handler)
     }
     
-    // request with a little params
+    /// Send a GET request to the specified path
+    ///
+    /// :param: path - The relative path from the root URL
+    /// :param: params - the parameters that passed to the request - will be serialized as parameters in url
+    /// :param: handler - the handle function that receive an object as parameter
     public func getAsList<T: Serializable>(path: String, params: [String: AnyObject]?, handler: (([T]) -> Void)?) {
         requestAsList("GET", path: path, pathParams: params, postBody: nil, handler: handler)
     }
     
-    // post with no params
+    /// Send a POST request to the target path and get a list of objects as response
+    ///
+    /// :param: path - The relative path from the root URL
+    /// :param: handler - the handle function that receive an object as parameter
     public func postAsList<T: Serializable>(path: String, handler: (([T]) -> Void)?) {
         requestAsList("POST", path: path, pathParams: nil, postBody: nil, handler: handler)
     }
     
-    // post with params
+    /// Send a POST request to the target path and get a list of objects as response
+    ///
+    /// :param: path - The relative path from the root URL
+    /// :param: params - the parameters that passed to the request - will be serialized as POST parameters
+    /// :param: handler - the handle function that receive an object as parameter
     public func postAsList<T: Serializable>(path: String, params: AnyObject?, handler: (([T]) -> Void)?) {
         requestAsList("POST", path: path, pathParams: params as? [String: AnyObject], postBody: params, handler: handler)
     }
     
     
-    // call a request
+    /// Send a request to the target path and get an Object as response
+    ///
+    /// :param: method - the HTTP Method of the request
+    /// :param: path - The relative path from the root URL
+    /// :param: pathParams - the parameters that passed to the request - will be serialized as URL parameters
+    /// :param: postBody - the parameters that passed to the request - will be serialized as POST Body
+    /// :param: handler - the handle function that receive an object as parameter
     func request<T: Serializable>(method: String,
         path: String,
         pathParams: [String: AnyObject]?,
@@ -99,7 +136,13 @@ public class RestAPI: NSObject {
 
     }
 
-    // call a request
+    /// Send a request to the target path and get a list of objects as response
+    ///
+    /// :param: method - the HTTP Method of the request
+    /// :param: path - The relative path from the root URL
+    /// :param: pathParams - the parameters that passed to the request - will be serialized as URL parameters
+    /// :param: postBody - the parameters that passed to the request - will be serialized as POST Body
+    /// :param: handler - the handle function that receive an object as parameter
     func requestAsList<T: Serializable>(method: String,
         path: String,
         pathParams: [String: AnyObject]?,
@@ -118,7 +161,13 @@ public class RestAPI: NSObject {
         }
     }
     
-    // execute request
+    /// Send a request to the target path and get a JSON Object as response
+    ///
+    /// :param: method - the HTTP Method of the request
+    /// :param: path - The relative path from the root URL
+    /// :param: pathParams - the parameters that passed to the request - will be serialized as URL parameters
+    /// :param: postBody - the parameters that passed to the request - will be serialized as POST Body
+    /// :param: handler - the handle function that receive an object as parameter
     func requestAsJSON(
         method: String,
         path: String,
@@ -126,8 +175,10 @@ public class RestAPI: NSObject {
         postBody: AnyObject?,
         callBack: (AnyObject -> Void)){
         
+        var url = "\(endPoint)\(path)"
+            
         // execute request
-        request(method, path: path, pathParams: pathParams, postBody: postBody) {
+        request(method, url: url, pathParams: pathParams, postBody: postBody) {
             (data) in
             
             var jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil)
@@ -147,14 +198,20 @@ public class RestAPI: NSObject {
     }
     
     
-    // execute data
+    /// Send a request to the target path and get a Data as Response
+    ///
+    /// :param: method - the HTTP Method of the request
+    /// :param: url - The absolute url
+    /// :param: pathParams - the parameters that passed to the request - will be serialized as URL parameters
+    /// :param: postBody - the parameters that passed to the request - will be serialized as POST Body
+    /// :param: handler - the handle function that receive an object as parameter
     func request(method: String,
-            path: String,
+            url: String,
             pathParams: [String: AnyObject]?,
             postBody: AnyObject?,
             callBack: (NSData -> Void)) {
                 
-        var request = serializeRequest(method, path: path, pathParams: pathParams, postBody: postBody)
+        var request = serializeRequest(method, url: url, pathParams: pathParams, postBody: postBody)
                 
         var sessionDataTask = session.dataTaskWithRequest(request) {
             (data, response, error) in
@@ -170,8 +227,8 @@ public class RestAPI: NSObject {
     }
     
     // serialize all request data into NSURL Request
-    func serializeRequest(method: String, path: String, pathParams: [String: AnyObject]?, postBody: AnyObject?) -> NSURLRequest {
-        var fullPath = "\(endPoint)\(path)"
+    func serializeRequest(method: String, url: String, pathParams: [String: AnyObject]?, postBody: AnyObject?) -> NSURLRequest {
+        var fullPath = url
         
         var requestParams = ""
         
