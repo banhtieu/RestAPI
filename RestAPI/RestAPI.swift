@@ -82,9 +82,8 @@ public class RestAPI: NSObject {
         pathParams: [String: AnyObject]?,
         postBody: AnyObject?,
         handler: ((T) -> Void)?) {
-            var request = serializeRequest(method, path: path, pathParams: pathParams, postBody: postBody)
             
-            executeRequest(request) {
+            requestAsJSON(method, path: path, pathParams: pathParams, postBody: postBody) {
                 dataObject in
                 // parse data to desired type
                 if var result:T = self.parseData(dataObject) {
@@ -106,10 +105,8 @@ public class RestAPI: NSObject {
         pathParams: [String: AnyObject]?,
         postBody: AnyObject?,
         handler: (([T]) -> Void)?) {
-            
-        var request = serializeRequest(method, path: path, pathParams: pathParams, postBody: postBody)
         
-        executeRequestAsJSON(request) {
+        requestAsJSON(method, path: path, pathParams: pathParams, postBody: postBody) {
             dataObject in
             // parse data to desired type
             var result:[T] = SerializableModel.parseAsList(dataObject)
@@ -122,10 +119,15 @@ public class RestAPI: NSObject {
     }
     
     // execute request
-    func executeRequestAsJSON(request: NSURLRequest, callBack: (AnyObject -> Void)){
+    func requestAsJSON(
+        method: String,
+        path: String,
+        pathParams: [String: AnyObject]?,
+        postBody: AnyObject?,
+        callBack: (AnyObject -> Void)){
         
         // execute request
-        executeRequest(request) {
+        request(method, path: path, pathParams: pathParams, postBody: postBody) {
             (data) in
             
             var jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil)
@@ -146,7 +148,14 @@ public class RestAPI: NSObject {
     
     
     // execute data
-    func executeRequest(request: NSURLRequest, callBack: (NSData -> Void)) {
+    func request(method: String,
+            path: String,
+            pathParams: [String: AnyObject]?,
+            postBody: AnyObject?,
+            callBack: (NSData -> Void)) {
+                
+        var request = serializeRequest(method, path: path, pathParams: pathParams, postBody: postBody)
+                
         var sessionDataTask = session.dataTaskWithRequest(request) {
             (data, response, error) in
             
