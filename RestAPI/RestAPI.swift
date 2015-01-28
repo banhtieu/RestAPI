@@ -109,7 +109,7 @@ public class RestAPI: NSObject {
             
         var request = serializeRequest(method, path: path, pathParams: pathParams, postBody: postBody)
         
-        executeRequest(request) {
+        executeRequestAsJSON(request) {
             dataObject in
             // parse data to desired type
             var result:[T] = SerializableModel.parseAsList(dataObject)
@@ -122,29 +122,38 @@ public class RestAPI: NSObject {
     }
     
     // execute request
-    func executeRequest(request: NSURLRequest, callBack: (AnyObject -> Void)){
-        // create a data task
+    func executeRequestAsJSON(request: NSURLRequest, callBack: (AnyObject -> Void)){
+        
+        // execute request
+        executeRequest(request) {
+            (data) in
+            
+            var jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil)
+            
+            // there is responded data
+            if let dataObject: AnyObject = jsonObject {
+                
+                callBack(dataObject)
+                
+            } else {
+                println("Result is nil / unrecognize format")
+                
+                var dataAsString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                println("Result: \(dataAsString)")
+            }
+        }
+    }
+    
+    
+    // execute data
+    func executeRequest(request: NSURLRequest, callBack: (NSData -> Void)) {
         var sessionDataTask = session.dataTaskWithRequest(request) {
             (data, response, error) in
             
-            // there is an error
             if error != nil {
-                print("There is \(error)")
+                println("There is \(error)")
             } else {
-                // there is no error
-                var jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil)
-                
-                // there is responded data
-                if let dataObject: AnyObject = jsonObject {
-                    
-                    callBack(dataObject)
-                    
-                } else {
-                    println("Result is nil / unrecognize format")
-                    
-                    var dataAsString = NSString(data: data, encoding: NSUTF8StringEncoding)!
-                    println("Result: \(dataAsString)")
-                }
+                callBack(data)
             }
         }
         
